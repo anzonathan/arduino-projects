@@ -1,5 +1,5 @@
 //Led Ladder Sequence 
-//Variation 2: Ladder goes up then turns of down
+//Variation 2: Ladder goes up then turns off leds on the way down
 
 //led number
 int l1 = 8;
