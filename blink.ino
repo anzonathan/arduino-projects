@@ -1,6 +1,6 @@
 //Blink program to test board with default led 13
 
-int red = 13;
+int red = A4;
 
 void setup(){
 
