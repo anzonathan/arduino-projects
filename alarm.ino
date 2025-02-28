@@ -39,11 +39,19 @@ void loop() {
     digitalWrite(Rled,HIGH);
     digitalWrite(Gled,LOW);
     tone(Buzzer,1000);
+    
+    if (buttonState == 1) {
+    digitalWrite(Rled,HIGH);
+    digitalWrite(Gled,LOW);
+    noTone(Buzzer);
+    
+  }
 
 
   }
 
-  if ((LDRState > 20) || (buttonState == 1))  {
+
+  else if (LDRState > 20)  {
     digitalWrite(Rled,LOW);
     digitalWrite(Gled,HIGH);
     noTone(Buzzer);
