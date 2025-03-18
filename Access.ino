@@ -5,7 +5,7 @@
 #include <MFRC522.h>
 
 
-//lcd lib
+//lcd lib SDA=A4, SCL=A5
 #include <LiquidCrystal_I2C.h>
 
 //Initialize the LCD 
@@ -42,7 +42,9 @@ void setup() {
   lcd.backlight();
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("RFID Tag UID");
+  lcd.print("CSE LAB");
+  lcd.setCursor(0,1);
+  lcd.print("Tap Card");
 
 }
  
@@ -58,19 +60,25 @@ void loop() {
 
   MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
 
-  //Serial.print(F("RFID Tag UID:"));
-  //printUID(rfid.uid.uidByte);
-  
+ 
+  String id = ID(UID(rfid.uid.uidByte));
+
   Serial.print("UID :");
-  Serial.print(ID(UID(rfid.uid.uidByte)));
+  Serial.print(id);
   Serial.println("");
+  
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Welcome ");
+  lcd.setCursor(0,1);
+  lcd.print(id);
 
-
-
-
-  lcd.setCursor(0,2);
-  //char UID[] = {rfid.uid.uidByte};
-  //lcd.print(UID);
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("CSE LAB");
+  lcd.setCursor(0,1);
+  lcd.print("Tap Card");
   
 
   rfid.PICC_HaltA(); // Halt PICC
