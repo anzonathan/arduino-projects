@@ -29,10 +29,9 @@ Jasper
 C1 C0 CD CF
 */
 
-//const int numOfCards = 4;
+const int numOfCards = 4;
 
-//byte cards[numOfCards][4] = {{0xA6,0x59,0x37,0xBB},{0x08,0x33,0xAF,0x1B},{0x04,0x7C,0xC6,0xDB},{0xC1,0xC0,0xCD,0xCF}};
-//String names[numOfCards] = {"Jane","John","Jewel","Jasper"};
+String names[numOfCards] = {"Jane","John","Jewel","Jasper"};
 
 void setup() { 
   Serial.begin(9600);
@@ -61,9 +60,9 @@ void loop() {
 
   //Serial.print(F("RFID Tag UID:"));
   //printUID(rfid.uid.uidByte);
-  //Serial.println("UID :");
   
-  Serial.print(UID(rfid.uid.uidByte));
+  Serial.print("UID :");
+  Serial.print(ID(UID(rfid.uid.uidByte)));
   Serial.println("");
 
 
@@ -91,3 +90,31 @@ String UID(byte *buffer) {
  return index;
 }
 
+//Function to Map UID to Name
+String ID(String uid){
+
+  String Name = "";
+
+  if (uid == "a65937bb"){
+    Name = names[0];
+
+  }
+
+  else if (uid == "833af1b"){
+    Name = names[1];
+
+  }
+
+  else if (uid == "47cc6db"){
+    Name = names[2];
+
+  }
+
+  else if (uid == "c1c0cdcf"){
+    Name = names[3];
+
+  }
+
+  return Name;
+
+}
